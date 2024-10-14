@@ -1435,7 +1435,7 @@
       <field>
         <name>Percentage of Smart Contracts</name>
         <type>Number</type>
-        <format>#####.##%</format>
+        <format>#.####</format>
         <currency/>
         <decimal/>
         <group/>
