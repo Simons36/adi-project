@@ -19,7 +19,7 @@ CREATE TABLE dim_location (
 );
 
 -- Create the fact table for energy consumption
-CREATE TABLE fact_energy_consumption (
+CREATE TABLE fact_energy_stats (
     fact_id INT AUTO_INCREMENT PRIMARY KEY,
     time_id DATETIME NOT NULL,
     location_id INT NOT NULL,
