@@ -5,12 +5,12 @@ CREATE DATABASE energy_dw;
 USE energy_dw;
 
 CREATE TABLE dim_time (
-    time_id DATE PRIMARY KEY,
+    time_id INT AUTO_INCREMENT PRIMARY KEY,
     year_id INT,
     season_id INT,             -- 1: Winter, 2: Spring, 3: Summer, 4: Autumn
     season_name VARCHAR(10),
     month_id INT,
-    month_name VARCHAR(10),
+    month_name VARCHAR(10)
 );
 
 CREATE TABLE dim_location (
