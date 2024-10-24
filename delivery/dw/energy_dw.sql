@@ -22,11 +22,11 @@ CREATE TABLE dim_location (
 
 -- Create the fact table for energy consumption
 CREATE TABLE fact_energy_stats (
-    fact_id INT AUTO_INCREMENT PRIMARY KEY,
     time_id DATE,
     location_id INT,
     energy_consumption DECIMAL(10,2), -- Energy consumption in kWh
     percentage_smart_meters DECIMAL(5,4), -- Percentage with 4 decimal places
+    PRIMARY KEY (time_id, location_id),
     FOREIGN KEY (time_id) REFERENCES dim_time(time_id),
     FOREIGN KEY (location_id) REFERENCES dim_location(location_id)
 );
