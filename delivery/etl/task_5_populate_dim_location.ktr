@@ -430,7 +430,7 @@
     <created_date>2024/10/21 15:40:58.812</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/10/21 15:40:58.812</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -500,13 +500,18 @@
   </connection>
   <order>
     <hop>
+      <from>Sort rows</from>
+      <to>Combination lookup/update</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>CSV file input</from>
       <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Combination lookup/update</to>
+      <from>CSV file input</from>
+      <to>Dummy (Invalid ParishCode</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -514,7 +519,7 @@
     <name>CSV file input</name>
     <type>CsvInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -569,6 +574,17 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>DistrictMunicipalityParishCode</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -579,7 +595,66 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>176</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Combination lookup/update</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>energy_dw</schema>
+    <table>dim_location</table>
+    <connection>energy_dw</connection>
+    <commit>100</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>District</name>
+        <lookup>region</lookup>
+      </key>
+      <key>
+        <name>Municipality</name>
+        <lookup>municipality</lookup>
+      </key>
+      <key>
+        <name>parish</name>
+        <lookup>parish</lookup>
+      </key>
+      <key>
+        <name>DistrictMunicipalityParishCode</name>
+        <lookup>parish_code</lookup>
+      </key>
+      <return>
+        <name>location_id</name>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -643,8 +718,8 @@
     </GUI>
   </step>
   <step>
-    <name>Combination lookup/update</name>
-    <type>CombinationLookup</type>
+    <name>Dummy (Invalid ParishCode</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -653,36 +728,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <schema>energy_dw</schema>
-    <table>dim_location</table>
-    <connection>energy_dw</connection>
-    <commit>100</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>District</name>
-        <lookup>region</lookup>
-      </key>
-      <key>
-        <name>Municipality</name>
-        <lookup>municipality</lookup>
-      </key>
-      <key>
-        <name>parish</name>
-        <lookup>parish</lookup>
-      </key>
-      <return>
-        <name>location_id</name>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -692,12 +737,24 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>144</yloc>
+      <xloc>176</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
+    <error>
+      <source_step>CSV file input</source_step>
+      <target_step>Dummy (Invalid ParishCode</target_step>
+      <is_enabled>Y</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
