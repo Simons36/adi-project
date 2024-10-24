@@ -17,7 +17,8 @@ CREATE TABLE dim_location (
     location_id INT AUTO_INCREMENT PRIMARY KEY,
     region VARCHAR(50),
     municipality VARCHAR(50),
-    parish VARCHAR(50)
+    parish VARCHAR(50),
+    parish_code INT -- due to discrepancies between the names of the parishes in the two datasets, we will use the code
 );
 
 -- Create the fact table for energy consumption
