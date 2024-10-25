@@ -500,23 +500,23 @@
   </connection>
   <order>
     <hop>
-      <from>Sort rows</from>
+      <from>Sort by Location (Remove Duplicates)</from>
       <to>Combination lookup/update</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>CSV file input</from>
-      <to>Sort rows</to>
+      <from>Import Dataset B</from>
+      <to>Sort by Location (Remove Duplicates)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>CSV file input</from>
-      <to>Dummy (Invalid ParishCode</to>
+      <from>Import Dataset B</from>
+      <to>Dummy (Invalid ParishCode)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>CSV file input</name>
+    <name>Import Dataset B</name>
     <type>CsvInput</type>
     <description/>
     <distribute>N</distribute>
@@ -654,13 +654,38 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>144</yloc>
+      <xloc>528</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows</name>
+    <name>Dummy (Invalid ParishCode)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by Location (Remove Duplicates)</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -712,40 +737,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>528</xloc>
       <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy (Invalid ParishCode</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
     <error>
-      <source_step>CSV file input</source_step>
-      <target_step>Dummy (Invalid ParishCode</target_step>
+      <source_step>Import Dataset B</source_step>
+      <target_step>Dummy (Invalid ParishCode)</target_step>
       <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>
